@@ -28,6 +28,9 @@ namespace Thermostat.UWP
     /// </summary>
     public sealed partial class DisplaySensors : Page
     {
+
+        Timer timer = new Timer(90000);
+
         public DisplaySensors()
         {
             this.InitializeComponent();
@@ -41,6 +44,16 @@ namespace Thermostat.UWP
         //    var devices = db.Devices.ToList();
         //    DisplayThermometers.ItemsSource = devices;
         //}
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            timer.Start();
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            timer.Stop();
+        }
 
         private void AddDevices()
         {
@@ -80,7 +93,6 @@ namespace Thermostat.UWP
 
 
             // Start the timer on a 10 second loop
-            Timer timer = new Timer(10000);
 
             // On each loop completion, execute the code to check the temperatures and update UI
             timer.Elapsed += async delegate
@@ -161,6 +173,7 @@ namespace Thermostat.UWP
 
         private void DisplayThermometers_ItemClick(object sender, ItemClickEventArgs e)
         {
+            timer.Stop();
             Device device = (Device)e.ClickedItem;
             sensorDisplayFrame.Navigate(typeof(EditSensor), device);
 

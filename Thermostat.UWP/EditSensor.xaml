@@ -14,7 +14,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Left">
-            <Button Grid.Row="0" HorizontalAlignment="Left" Margin="10,0,15,0" Padding="10" FontWeight="SemiBold" Click="BackButton_Click">&lt; Go Back</Button>
+            <Button Grid.Row="0" HorizontalAlignment="Left" Margin="10,0,15,0" Padding="30,10" FontWeight="SemiBold" Click="BackButton_Click">&lt; Go Back</Button>
         </StackPanel>
         <StackPanel Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Button HorizontalAlignment="Center" Background="Maroon" Padding="30,10" Click="DeleteButton_Click">Delete Sensor</Button>
@@ -24,7 +24,7 @@
         </StackPanel>
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -38,11 +38,11 @@
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Row="1" Grid.Column="0" 
                        HorizontalAlignment="Right" Margin="20" 
-                       FontSize="40" Text="Device Name: " VerticalAlignment="Center"/>
+                       FontSize="26" Text="Device Name: " VerticalAlignment="Center"/>
             <TextBox Grid.Row="1" Grid.Column="1" 
                      Grid.ColumnSpan="2" VerticalAlignment="Center"  HorizontalAlignment="Left"
                      Background="White" Foreground="Black"
-                     Margin="20" Height="60" Width="600" Padding="15,20,0,0" 
+                     Margin="20" Height="60" Width="450" Padding="15,20,0,0" 
                      x:Name="TxtDeviceName"/>
             <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="2">
                 <Grid.RowDefinitions>
@@ -56,22 +56,18 @@
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Row="0" Grid.Column="0" 
                        HorizontalAlignment="Right" Margin="20" 
-                       FontSize="40" Text="Device IP: " VerticalAlignment="Center"/>
+                       FontSize="26" Text="Device IP: " VerticalAlignment="Center"/>
                 <TextBox Grid.Row="0" Grid.Column="1" 
                      Grid.ColumnSpan="2" VerticalAlignment="Center"  HorizontalAlignment="Left"
                      Background="White" Foreground="Black"
-                     Margin="20" Height="60" Width="600" Padding="20" 
+                     Margin="20" Height="60" Width="450" Padding="20" 
                      x:Name="TxtDeviceIp"/>
                 <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
                     <TextBlock HorizontalAlignment="Center" Width="600" TextWrapping="Wrap" TextAlignment="Center">
-                        <Run Foreground="DimGray">
-                                It's not recommended to change the IP unless your sensor is not communicating. If you need to add a new sensor, you should
-                                use the Add Devices screen instead. If you must change your sensor's IP, enter the fully qualified URI (http://192.168.0.*)
-                            </Run>
+                        <Run Foreground="DimGray" FontSize="12" Text="Changing the IP is not recommended. If you must change the IP, fully qualify it (http://192.168.0.*)"/>
                     </TextBlock>
                 </StackPanel>
             </Grid>
-            <TextBlock Grid.Row="4" HorizontalAlignment="Right" Text="Tile Color:" VerticalAlignment="Center" FontSize="40" Margin="20"/>
 
             <StackPanel Orientation="Horizontal" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.ColumnSpan="3">
                 <TextBlock Text="Device Name: " Margin="10" Foreground="DimGray"/>
@@ -80,28 +76,31 @@
                 <TextBlock x:Name="DisplayDeviceIp" Margin="10,10,50,10" Foreground="DimGray"/>
                 <TextBlock x:Name="HiddenForDeviceId" Visibility="Collapsed"/>
             </StackPanel>
+            <TextBlock Grid.Row="4" 
+                       Grid.Column="0" 
+                       HorizontalAlignment="Right" 
+                       Text="Tile Color:" VerticalAlignment="Center" 
+                       FontSize="26" Margin="20"/>
             <ComboBox Grid.Column="1" 
                       Grid.ColumnSpan="2"
                       HorizontalAlignment="Left" 
-                      Height="60"
-                      Width="600"
-                      Padding="10,0,0,10"
+                      Height="50"
+                      Width="450"
                       Margin="20"
+                      Padding="0"
                       Grid.Row="4" 
                       VerticalAlignment="Center" 
                       x:Name="cbComboBox">
                 <ComboBox.ItemTemplate>
                     <DataTemplate x:DataType="local:Colors">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="40"/>
+                    <Grid Background="{Binding colorName}">
+                            <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="50"/>
                             </Grid.RowDefinitions>
-                            <Canvas Grid.Column="0" Grid.Row="0" Width="40" Height="40" Background="{Binding colorName}" Margin="0,0,10,0"/>
-                            <TextBlock Grid.Column="1" VerticalAlignment="Center" FontSize="20" Padding="10,8,0,0" Text="{Binding colorName}"/>
+                            <TextBlock VerticalAlignment="Center" FontSize="22" Margin="20,0,0,0" Text="{Binding colorName}"/>
                         </Grid>
                     </DataTemplate>
                 </ComboBox.ItemTemplate>

@@ -65,17 +65,15 @@ namespace Thermostat.UWP
 
             DeviceContext db = new DeviceContext();
 
-            //Legacy code, works very slow. Keeping for reference
-
             // Loop through all available IP addresses in the 192.168.1 subnet
             for (int i = 0; i < 256; i++)
             {
+                var found = numMatchingDevicesFound;
                 await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal,
-                () => { NumberDevicesFound.Text = numMatchingDevicesFound.ToString(); });
+                () => { NumberDevicesFound.Text = found.ToString(); });
 
                 if (i == 255)
                 {
-                    var found = numMatchingDevicesFound;
                     await Task.Run(() => ShowCompletedDialog(found));
                     await Task.Run(() => StopProgressBar());
                 }
@@ -85,8 +83,8 @@ namespace Thermostat.UWP
                     // Calculate percentage complete and send to progress bar in UI
                     double percentComplete = (i / 256.0);
                     await Task.Run(() => UpdateProgressBar(percentComplete));
-
-
+                    
+                    // Put this code in another method
                     HttpClient client = new HttpClient()
                     {
                         BaseAddress = new Uri("http://192.168.1." + i),
@@ -97,7 +95,6 @@ namespace Thermostat.UWP
                         var result = client.GetAsync(client.BaseAddress).Result;
                         if ((int)result.StatusCode == 200)
                         {
-
                             var content = result.Content.ReadAsStringAsync();
 
                             if (content.Result.Contains("Temperature"))
@@ -135,6 +132,8 @@ namespace Thermostat.UWP
                                 }
                             }
                         }
+                        // Get rid of HttpClient to free up memory
+                        client.Dispose();
                     }
                     catch (Exception ex)
                     {
@@ -154,6 +153,9 @@ namespace Thermostat.UWP
         /// </summary>
         public void StartProgressBar()
         {
+            // Hide the button and show other UI elements while searching for new devices
+            ProgressStatusText.Visibility = Visibility.Visible;
+            BtnAddDevice.Visibility = Visibility.Collapsed;
             ProgressRing.Visibility = Visibility.Visible;
             ProgressRing.IsActive = true;
             NumDevicesFoundLabel.Visibility = Visibility.Visible;
@@ -166,12 +168,14 @@ namespace Thermostat.UWP
         {
             await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, async () =>
             {
+                // Once completed, hide all UI elements again
                 if (ProgressRing.IsActive)
                 {
-                    ProgressRing.IsActive = false;
                     ProgressRing.Visibility = Visibility.Collapsed;
                     ProgressBar.Value = 100;
                     ProgressStatusText.Visibility = Visibility.Collapsed;
+                    ProgressStatusText.Visibility = Visibility.Collapsed;
+                    ProgressRing.IsActive = false;
                 }
             });
         }

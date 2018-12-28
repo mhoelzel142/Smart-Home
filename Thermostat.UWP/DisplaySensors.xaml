@@ -24,16 +24,16 @@
             ScrollViewer.HorizontalScrollMode="Enabled">
             <GridView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <VariableSizedWrapGrid Margin="20" Orientation="Vertical" MaximumRowsOrColumns="3" Height="Auto" ItemHeight="200" ItemWidth="200"/>
+                    <VariableSizedWrapGrid Margin="20" Orientation="Horizontal" MaximumRowsOrColumns="3" ItemHeight="225" ItemWidth="225"/>
                 </ItemsPanelTemplate>
             </GridView.ItemsPanel>
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="model:Device">
-                    <StackPanel VariableSizedWrapGrid.ColumnSpan="2">
+                    <StackPanel Orientation="Horizontal">
                     <Grid Padding="10" Background="{Binding DeviceTileColor}"
                           Margin="0"
-                          Width="200" 
-                          Height="200"
+                          Width="225" 
+                          Height="225"
                           VariableSizedWrapGrid.ColumnSpan="2"
                           VariableSizedWrapGrid.RowSpan="2">
                         <Grid.RowDefinitions>
@@ -47,7 +47,7 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Padding="5" HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <TextBlock Text="{x:Bind DeviceName, Mode=TwoWay}" FontSize="22" FontWeight="SemiBold"/>
+                            <TextBlock Text="{x:Bind DeviceName, Mode=TwoWay}" FontSize="22" />
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center">
