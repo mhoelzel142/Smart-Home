@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Thermostat.Model;
 using Microsoft.EntityFrameworkCore;
+using GalaSoft.MvvmLight.Threading;
 
 namespace Thermostat.UWP
 {
@@ -35,7 +36,8 @@ namespace Thermostat.UWP
 
             using (var db = new DeviceContext())
             {
-                db.Database.Migrate();
+                db.Database.EnsureCreated();
+                db.Database.Migrate();               
             }
         }
 
@@ -78,6 +80,8 @@ namespace Thermostat.UWP
                 // Ensure the current window is active
                 Window.Current.Activate();
             }
+            // Initialize the Galasoft MvvmLight Dispatcher Helper (for UI NotifyPropertyChanged updates)
+            DispatcherHelper.Initialize();
         }
 
         /// <summary>

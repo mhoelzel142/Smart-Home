@@ -31,6 +31,7 @@ namespace Thermostat.UWP
         public DisplaySensors()
         {
             this.InitializeComponent();
+            //AddDevices();
             StartAsyncTimedWork();
         }
 
@@ -41,23 +42,53 @@ namespace Thermostat.UWP
         //    DisplayThermometers.ItemsSource = devices;
         //}
 
+        private void AddDevices()
+        {
+            DeviceContext db = new DeviceContext();
+            // Get a list of system colors
+            ObservableCollection<string> colors = new ObservableCollection<string>();
+            colors = Helpers.Colors.GetAvailableColors();
+
+            // Assign a color randomly using Random.Next
+            Random rnd = new Random();
+            for (int i = 0; i < 10; i++)
+            {
+                var colorIndex = rnd.Next(colors.Count - 1);
+                var d = new Device() { 
+                
+                    Id = 50 + i,
+                    DeviceName = "Test Device",
+                    DeviceTemperature = "72.15",
+                    DeviceHumidity = i.ToString(),
+                    DeviceIp = "http://192.168.1." + i,
+                    DeviceTileColor = colors[colorIndex]
+                };
+                db.Devices.Add(d);
+                db.SaveChanges();
+            }
+        }
+
         private async void StartAsyncTimedWork()
         {
-
+            // Instantiate objects
             DeviceContext db = new DeviceContext();
             DevicesViewModel viewModel = new DevicesViewModel();
             viewModel.Devices = new ObservableCollection<Device>(db.Devices.ToList());
 
             await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal,
-                async () => { DisplayThermometers.ItemsSource = viewModel.Devices; });
+                () => { DisplayThermometers.ItemsSource = viewModel.Devices; });
 
 
-            // Start the timer on a loop
+            // Start the timer on a 10 second loop
             Timer timer = new Timer(10000);
+
+            // On each loop completion, execute the code to check the temperatures and update UI
             timer.Elapsed += async delegate
             {
+                // Re-set the itemssource as viewModel.Devices - May not need this after MvvmLight and BeginInvokeOnUI()
                 await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal,
-                    async () => { DisplayThermometers.ItemsSource = viewModel.Devices; });
+                    () => { DisplayThermometers.ItemsSource = viewModel.Devices; });
+
                 foreach (var device in viewModel.Devices)
                 {
                     Uri uri = new Uri(device.DeviceIp);
@@ -74,18 +105,38 @@ namespace Thermostat.UWP
                         if (!currentTemperature.Contains("aile") && !currentTemperature.Contains("Fail") && !currentTemperature.Contains("n"))
                         {
                             device.DeviceTemperature = currentTemperature;
+                            //device.DeviceTemperature = "15";
                             db.Entry(device).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-                            await db.SaveChangesAsync();
+                            db.SaveChanges();
+                            // Re - instantiate the viewModel's collection of Devices
+
                         }
+                        await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal,
+                        () =>
+                        {
+                            DisplayThermometers.ItemsSource = viewModel.Devices;
+                        });
                     }
-                    catch (Exception e)
+                    catch(InvalidOperationException e)
                     {
                         Console.WriteLine(e);
                     }
-                    
+                    catch (Exception e)
+                    {
+                        foreach(var d in viewModel.Devices)
+                        {
+                            d.DeviceTemperature = "15.6";
+                        }
+                        // Commented out to see if propertyChanged works
+                        //await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal,
+                        //() =>
+                        //{
+                        //    DisplayThermometers.ItemsSource = viewModel.Devices;
+                        //});
+                        Console.WriteLine(e);
+                    }
 
-                    // Re-instantiate the viewModel's collection of Devices
-                    viewModel.Devices = new ObservableCollection<Device>(db.Devices.ToList());
+
 
                     //DisplayThermometers.ItemsSource = viewModel.Devices;
 
@@ -108,12 +159,10 @@ namespace Thermostat.UWP
 
         }
 
-        private async void DisplayThermometers_ItemClick(object sender, ItemClickEventArgs e)
+        private void DisplayThermometers_ItemClick(object sender, ItemClickEventArgs e)
         {
-            Device device = (Device)DisplayThermometers.SelectedItem;
-
-            MessageDialog dialog = new MessageDialog("Selected Index: " + device?.Id);
-            await dialog.ShowAsync();
+            Device device = (Device)e.ClickedItem;
+            sensorDisplayFrame.Navigate(typeof(EditSensor), device);
 
         }
     }

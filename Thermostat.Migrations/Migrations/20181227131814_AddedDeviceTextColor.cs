@@ -1,13 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Thermostat.Model.Migrations
+namespace Thermostat.Migrations.Migrations
 {
-    public partial class AddedHumidityColumn : Migration
+    public partial class AddedDeviceTextColor : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<string>(
-                name: "DeviceHumidity",
+                name: "DeviceTextColor",
                 table: "Devices",
                 nullable: true);
         }
@@ -15,7 +15,7 @@ namespace Thermostat.Model.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "DeviceHumidity",
+                name: "DeviceTextColor",
                 table: "Devices");
         }
     }

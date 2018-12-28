@@ -22,6 +22,10 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Extensions.Logging;
 using Thermostat.Model;
+using System.Collections.ObjectModel;
+using System.Drawing;
+using System.Reflection;
+using Windows.UI;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -35,7 +39,7 @@ namespace Thermostat.UWP
         public AddDevices()
         {
             this.InitializeComponent();
-           
+
         }
 
         /// <summary>
@@ -64,8 +68,11 @@ namespace Thermostat.UWP
             //Legacy code, works very slow. Keeping for reference
 
             // Loop through all available IP addresses in the 192.168.1 subnet
-            for (int i = 15; i < 40; i++)
+            for (int i = 0; i < 256; i++)
             {
+                await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal,
+                () => { NumberDevicesFound.Text = numMatchingDevicesFound.ToString(); });
+
                 if (i == 255)
                 {
                     var found = numMatchingDevicesFound;
@@ -82,51 +89,53 @@ namespace Thermostat.UWP
 
                     HttpClient client = new HttpClient()
                     {
-                        BaseAddress = new Uri("http://192.168.1." + i)
+                        BaseAddress = new Uri("http://192.168.1." + i),
+                        Timeout = TimeSpan.FromMilliseconds(400)
                     };
                     try
                     {
                         var result = client.GetAsync(client.BaseAddress).Result;
-                        var content = result.Content.ReadAsStringAsync();
-
-                        if (content.Result.Contains("Temperature"))
+                        if ((int)result.StatusCode == 200)
                         {
-                            if (!db.Devices.Any(x => x.DeviceIp == client.BaseAddress.ToString()))
+
+                            var content = result.Content.ReadAsStringAsync();
+
+                            if (content.Result.Contains("Temperature"))
                             {
-                                var currentDevices = db.Devices.Count();
-                                numMatchingDevicesFound++;
-                                db.Devices.Add(new Device()
+                                if (!db.Devices.Any(x => x.DeviceIp == client.BaseAddress.ToString()))
                                 {
-                                    DeviceIp = client.BaseAddress.ToString()
-                                });
-                                await db.SaveChangesAsync();
-                                if (db.Devices.Count() > currentDevices)
-                                {
-                                    MessageDialog dialog = new MessageDialog("Devices saved to database");
-                                    await dialog.ShowAsync();
+
+
+                                    // Get a list of system colors
+                                    ObservableCollection<string> colors = new ObservableCollection<string>();
+                                    colors = Helpers.Colors.GetAvailableColors();
+
+                                    // Assign a color randomly using Random.Next
+                                    Random rnd = new Random();
+                                    var colorIndex = rnd.Next(colors.Count - 1);
+
+                                    var response = content.Result;
+                                    var temperature = response.IndexOf("Fahrenheit");
+                                    var currentTemperature = response.Substring(temperature + 14, 4) + "° F";
+                                    // We only expect a number/float here, so if it contains letters, ignore it:
+                                    if (!currentTemperature.Contains("aile") && !currentTemperature.Contains("Fail") && !currentTemperature.Contains("n"))
+                                    {
+
+                                        db.Devices.Add(new Device()
+                                        {
+                                            DeviceIp = client.BaseAddress.ToString(),
+                                            DeviceName = "Unnamed Sensor",
+                                            DeviceTemperature = currentTemperature,
+                                            // Get the color
+                                            DeviceTileColor = colors[colorIndex]
+                                        });
+                                        await db.SaveChangesAsync();
+                                        numMatchingDevicesFound++;
+                                    }
                                 }
-                                else
-                                {
-                                    MessageDialog dialog = new MessageDialog("Devices NOT added");
-                                    await dialog.ShowAsync();
-                                }
-
-                                i = 255;
-                            }
-
-                            var contentBody = content.Result;
-                            var temperature = contentBody.IndexOf("Fahrenheit", StringComparison.Ordinal);
-                            var currentTemperature = contentBody.Substring(temperature + 15, 5);
-
-                            if (!currentTemperature.Contains("ailed"))
-                            {
-                                MessageDialog dialog = new MessageDialog("Current Temperature" + currentTemperature);
-                                await dialog.ShowAsync();
                             }
                         }
                     }
-
-
                     catch (Exception ex)
                     {
                         Console.WriteLine(ex);
@@ -138,6 +147,8 @@ namespace Thermostat.UWP
             }
         }
 
+
+
         /// <summary>
         /// Starts the progress ring
         /// </summary>
@@ -145,6 +156,7 @@ namespace Thermostat.UWP
         {
             ProgressRing.Visibility = Visibility.Visible;
             ProgressRing.IsActive = true;
+            NumDevicesFoundLabel.Visibility = Visibility.Visible;
         }
 
         /// <summary>
@@ -208,6 +220,5 @@ namespace Thermostat.UWP
             else
                 return "";
         }
-
     }
 }

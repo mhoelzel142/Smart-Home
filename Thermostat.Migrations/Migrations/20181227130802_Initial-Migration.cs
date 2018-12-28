@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Thermostat.Model.Migrations
+namespace Thermostat.Migrations.Migrations
 {
     public partial class InitialMigration : Migration
     {
@@ -14,7 +14,10 @@ namespace Thermostat.Model.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     DeviceName = table.Column<string>(nullable: true),
                     DeviceIp = table.Column<string>(nullable: true),
-                    DeviceMac = table.Column<string>(nullable: true)
+                    DeviceMac = table.Column<string>(nullable: true),
+                    DeviceTemperature = table.Column<string>(nullable: true),
+                    DeviceHumidity = table.Column<string>(nullable: true),
+                    DeviceTileColor = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

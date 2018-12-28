@@ -3,13 +3,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Thermostat.Model;
+using Thermostat.Migrations;
 
-namespace Thermostat.Model.Migrations
+namespace Thermostat.Migrations.Migrations
 {
-    [DbContext(typeof(DeviceContext))]
-    [Migration("20181226061817_AddTemperatureToDevices")]
-    partial class AddTemperatureToDevices
+    [DbContext(typeof(NewContext))]
+    [Migration("20181227131814_AddedDeviceTextColor")]
+    partial class AddedDeviceTextColor
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -22,6 +22,8 @@ namespace Thermostat.Model.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("DeviceHumidity");
+
                     b.Property<string>("DeviceIp");
 
                     b.Property<string>("DeviceMac");
@@ -29,6 +31,10 @@ namespace Thermostat.Model.Migrations
                     b.Property<string>("DeviceName");
 
                     b.Property<string>("DeviceTemperature");
+
+                    b.Property<string>("DeviceTextColor");
+
+                    b.Property<string>("DeviceTileColor");
 
                     b.HasKey("Id");
 

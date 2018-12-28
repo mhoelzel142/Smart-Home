@@ -2,7 +2,7 @@
     x:Class="Thermostat.UWP.DisplaySensors"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:Thermostat.UWP"
+    xmlns:local="using:Thermostat.UWP.Helpers"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:model="using:Thermostat.Model"
@@ -10,49 +10,58 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
 
-    <Grid>
-        <ListView x:Name="DisplayThermometers" ItemsSource="{Binding ViewModel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                  HorizontalAlignment="Center" VerticalAlignment="Center" 
-                  ItemClick="DisplayThermometers_ItemClick" 
-                  IsItemClickEnabled="True">
-            <ListView.ItemTemplate>
+    <Frame x:Name="sensorDisplayFrame">
+        <GridView
+            x:Name="DisplayThermometers" 
+            ItemsSource="{Binding ViewModel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  
+            ItemClick="DisplayThermometers_ItemClick" 
+            Tag="{Binding ViewModel.Devices.Id}"
+            
+            IsItemClickEnabled="True"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            ScrollViewer.HorizontalScrollBarVisibility="Visible"
+            ScrollViewer.HorizontalScrollMode="Enabled">
+            <GridView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VariableSizedWrapGrid Margin="20" Orientation="Vertical" MaximumRowsOrColumns="3" Height="Auto" ItemHeight="200" ItemWidth="200"/>
+                </ItemsPanelTemplate>
+            </GridView.ItemsPanel>
+            <GridView.ItemTemplate>
                 <DataTemplate x:DataType="model:Device">
-                    <Frame HorizontalAlignment="Center" x:Name="FrameFrame">
-                        <Grid Background="DimGray" Padding="10" Margin="0,5,0,5">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <StackPanel Padding="10" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" VerticalAlignment="Center">
-                                <Image Source="Images/thermometer-icon.png" Width="60" VerticalAlignment="Center"/>
-                            </StackPanel>
+                    <StackPanel VariableSizedWrapGrid.ColumnSpan="2">
+                    <Grid Padding="10" Background="{Binding DeviceTileColor}"
+                          Margin="0"
+                          Width="200" 
+                          Height="200"
+                          VariableSizedWrapGrid.ColumnSpan="2"
+                          VariableSizedWrapGrid.RowSpan="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Padding="5" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <TextBlock Text="{x:Bind DeviceName, Mode=TwoWay}" FontSize="22" FontWeight="SemiBold"/>
+                        </StackPanel>
 
-                            <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Padding="10">
-                                <TextBlock Text="Room: "/>
-                                <!--<TextBlock Text="{Binding DeviceName, Mode=TwoWay}"/>-->
-                                <TextBlock Text=" Room Name"/>
-                            </StackPanel>
-                            
-                            <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Padding="10">
-                                <TextBlock Text="IP Address:" Margin="0,0,15,0"/>
-                                <TextBlock Text="{x:Bind DeviceIp, Mode=TwoWay}"/>
-                            </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <TextBlock Text="{x:Bind DeviceTemperature, Mode=TwoWay}" FontSize="54" FontWeight="Light"/>
+                        </StackPanel>
 
-                            <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Padding="10">
-                                <TextBlock Text="Temperature:"/>
-                                <TextBlock Text="{x:Bind DeviceTemperature, Mode=TwoWay}" Margin="10,0,0,0"/>
-                            </StackPanel>
-                        </Grid>
-                    </Frame>
+                        <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2">
+                            <TextBlock Text="{x:Bind DeviceHumidity, Mode=TwoWay}" FontSize="22"/>
+                            <TextBlock Text="% Humidity"/>
+                        </StackPanel>
+                    </Grid>
+                    </StackPanel>
                 </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-
-    </Grid>
+            </GridView.ItemTemplate>
+        </GridView>
+    </Frame>
 </Page>

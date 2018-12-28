@@ -125,6 +125,11 @@
     <Compile Include="DisplaySensors.xaml.cs">
       <DependentUpon>DisplaySensors.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EditSensor.xaml.cs">
+      <DependentUpon>EditSensor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\Colors.cs" />
+    <Compile Include="Helpers\VariableSizedGridView.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -158,6 +163,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="DisplaySensors.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditSensor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
