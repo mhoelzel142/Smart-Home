@@ -148,6 +148,7 @@
     <None Include="Thermostat.UWP_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <PRIResource Include=".gitignore" />
     <Content Include="Images\thermometer-icon.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
