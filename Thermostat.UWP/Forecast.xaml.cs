@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -33,7 +34,7 @@ namespace Thermostat.UWP
             GetForecast();
         }
 
-        public void GetForecast()
+        public async void GetForecast()
         {
             // Instantiate the viewModel list
             ForecastViewModel viewModel = new ForecastViewModel {Forecasts = new ObservableCollection<Forecast>()};
@@ -44,7 +45,7 @@ namespace Thermostat.UWP
                     new Uri(
                         "https://api.openweathermap.org/")
             };
-            string requestUri = "data/2.5/forecast?zip=54915&appid="; // API Key here
+            string requestUri = "data/2.5/forecast?zip=54915&appid=" + apiKey; // API Key here
             var result = client.GetAsync(requestUri).Result;
             var content = result.Content.ReadAsStringAsync();
             var text = content.Result;
@@ -72,18 +73,6 @@ namespace Thermostat.UWP
                 {
                     viewModel.Forecasts.Add(item);
                 }
-
-                switch (item.weather[0].main)
-                {
-                    case "Snow":
-                        break;
-                    case "Rain":
-                        break;
-                    case "Sunny":
-                        break;
-                    default: break;
-                }
-
             }
             //viewModel.Forecasts = weatherData.list;
             DisplayWeather.ItemsSource = viewModel.Forecasts;
