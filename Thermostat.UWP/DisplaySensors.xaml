@@ -24,7 +24,7 @@
             ScrollViewer.HorizontalScrollMode="Enabled">
             <GridView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <VariableSizedWrapGrid Margin="20" Orientation="Horizontal" MaximumRowsOrColumns="3" ItemHeight="225" ItemWidth="225"/>
+                    <VariableSizedWrapGrid Margin="20" Orientation="Vertical" MaximumRowsOrColumns="2" ItemHeight="225" ItemWidth="225"/>
                 </ItemsPanelTemplate>
             </GridView.ItemsPanel>
             <GridView.ItemTemplate>
@@ -35,7 +35,7 @@
                           Width="225" 
                           Height="225"
                           VariableSizedWrapGrid.ColumnSpan="2"
-                          VariableSizedWrapGrid.RowSpan="2">
+                          VariableSizedWrapGrid.RowSpan="1">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto"/>
                             <RowDefinition Height="*"/>

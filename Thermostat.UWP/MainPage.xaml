@@ -9,7 +9,7 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     Loaded="MainPage_OnLoaded">
-    <SplitView IsPaneOpen="False" DisplayMode="CompactInline" x:Name="splitView">
+    <SplitView IsPaneOpen="False" DisplayMode="CompactInline" x:Name="splitView" OpenPaneLength="256" CompactPaneLength="60">
 
         <SplitView.Pane>
             <Grid>
@@ -20,7 +20,7 @@
                 </Grid.RowDefinitions>
                 <Button Click="ExpandMenu">
                     <ContentControl>
-                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE700;" Width="27" Height="30" Margin="0"/>
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE700;" Width="40" Height="45" Margin="0"/>
                     </ContentControl>
                 </Button>
                 <ListView x:Name="NavLinksList" Margin="0" 
@@ -32,10 +32,10 @@
                         <DataTemplate>
                             <Grid>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="40"/>
+                                    <ColumnDefinition Width="50"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <SymbolIcon Grid.Column="0" Symbol="{Binding Symbol}" HorizontalAlignment="Center" Margin="0,0,12,0"/>
+                                <SymbolIcon Grid.Column="0" Symbol="{Binding Symbol}" HorizontalAlignment="Center" Width="60" Height="55" Margin="0,0,12,0"/>
                                 <TextBlock Grid.Column="1" Text="{Binding Label}"/>
                             </Grid>
                         </DataTemplate>

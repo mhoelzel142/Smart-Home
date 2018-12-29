@@ -67,6 +67,12 @@ namespace Thermostat.UWP
                 },
                 new NavMenuItem()
                 {
+                    Symbol = Symbol.Globe,
+                    Label = "Forecast",
+                    DestinationPage = typeof(ForecastTest)
+                },
+                new NavMenuItem()
+                {
                     Symbol = Symbol.Add,
                     Label = "Add Sensors",
                     DestinationPage = typeof(AddDevices)
