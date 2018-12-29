@@ -45,7 +45,7 @@ namespace Thermostat.UWP
                     new Uri(
                         "https://api.openweathermap.org/")
             };
-            string requestUri = "data/2.5/forecast?zip=54915&appid=" + apiKey; // API Key here
+            string requestUri = "data/2.5/forecast?zip=54915&appid="; // API Key here
             var result = client.GetAsync(requestUri).Result;
             var content = result.Content.ReadAsStringAsync();
             var text = content.Result;

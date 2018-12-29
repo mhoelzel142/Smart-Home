@@ -55,8 +55,8 @@
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2">
-                            <TextBlock Text="{x:Bind DeviceHumidity, Mode=TwoWay}" FontSize="22"/>
-                            <TextBlock Text="% Humidity"/>
+                            <TextBlock Text="{x:Bind DeviceHumidity, Mode=TwoWay}" FontSize="16"/>
+                            <TextBlock Text=" Humidity" FontSize="16"/>
                         </StackPanel>
                     </Grid>
                     </StackPanel>

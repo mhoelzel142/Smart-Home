@@ -29,7 +29,7 @@ namespace Thermostat.UWP
     public sealed partial class DisplaySensors : Page
     {
 
-        Timer timer = new Timer(90000);
+        Timer timer = new Timer(5000);
 
         public DisplaySensors()
         {
@@ -110,13 +110,16 @@ namespace Thermostat.UWP
                     {
                         var response = client.GetAsync(client.BaseAddress).Result.Content.ReadAsStringAsync();
                         var temperature = response.Result.IndexOf("Fahrenheit");
+                        var humidity = response.Result.IndexOf("Humidity");
 
                         //var currentTemperature = response.Result;
                         var currentTemperature = response.Result.Substring(temperature + 14, 4) + "° F";
+                        var currentHumidity = response.Result.Substring(humidity + 13, 4) + "%";
                         // We only expect a number/float here, so if it contains letters, ignore it:
                         if (!currentTemperature.Contains("aile") && !currentTemperature.Contains("Fail") && !currentTemperature.Contains("n"))
                         {
                             device.DeviceTemperature = currentTemperature;
+                            device.DeviceHumidity = currentHumidity;
                             //device.DeviceTemperature = "15";
                             db.Entry(device).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                             db.SaveChanges();

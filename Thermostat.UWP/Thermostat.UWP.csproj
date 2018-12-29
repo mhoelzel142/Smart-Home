@@ -144,7 +144,6 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <PRIResource Include="Resources.resw" />
     <None Include="Thermostat.UWP_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
@@ -203,6 +202,9 @@
     <Reference Include="Microsoft.EntityFrameworkCore">
       <HintPath>..\..\..\..\.nuget\packages\microsoft.entityframeworkcore\2.2.0\lib\netstandard2.0\Microsoft.EntityFrameworkCore.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <PRIResource Include="Resources.resw" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

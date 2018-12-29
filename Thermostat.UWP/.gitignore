@@ -9,13 +9,13 @@
 *.user
 *.userosscache
 *.sln.docstates
-
+/Resources.resw
+*.resw
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
-Resources.resw
 
-# Build results
+# Build result
 [Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/
