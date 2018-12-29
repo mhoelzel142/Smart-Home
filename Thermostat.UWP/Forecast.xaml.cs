@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Resources;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -45,7 +46,8 @@ namespace Thermostat.UWP
                     new Uri(
                         "https://api.openweathermap.org/")
             };
-            string requestUri = "data/2.5/forecast?zip=54915&appid="; // API Key here
+            var apiKey = ResourceLoader.GetForCurrentView().GetString("ApiKey");
+            string requestUri = "data/2.5/forecast?zip=54915&appid=" + apiKey; // API Key here
             var result = client.GetAsync(requestUri).Result;
             var content = result.Content.ReadAsStringAsync();
             var text = content.Result;
@@ -72,6 +74,38 @@ namespace Thermostat.UWP
                 if (((index + 7) % 8) == 0)
                 {
                     viewModel.Forecasts.Add(item);
+                }
+                var icon = item.weather[0].icon;
+                switch (icon)
+                {
+                    case "01d":
+                        item.weather[0].icon = "Images/clear.png";
+                        break;
+                    case "02d":
+                        item.weather[0].icon = "Images/partly-cloudy.png";
+                        break;
+                    case "03d":
+                        item.weather[0].icon = "Images/scattered-clouds.png";
+                        break;
+                    case "04d":
+                        item.weather[0].icon = "Images/cloudy.png";
+                        break;
+                    case "09d":
+                        item.weather[0].icon = "Images/light-rain.png";
+                        break;
+                    case "10d":
+                        item.weather[0].icon = "Images/rain.png";
+                        break;
+                    case "11d":
+                        item.weather[0].icon = "Images/thunderstorm.png";
+                        break;
+                    case "13d":
+                        item.weather[0].icon = "Images/snow.png";
+                        break;
+                    default:
+                        break;
+
+
                 }
             }
             //viewModel.Forecasts = weatherData.list;

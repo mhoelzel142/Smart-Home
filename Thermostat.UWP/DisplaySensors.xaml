@@ -54,7 +54,7 @@
                             <TextBlock Text="{x:Bind DeviceTemperature, Mode=TwoWay}" FontSize="54" FontWeight="Light"/>
                         </StackPanel>
 
-                        <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2">
+                        <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Center">
                             <TextBlock Text="{x:Bind DeviceHumidity, Mode=TwoWay}" FontSize="16"/>
                             <TextBlock Text=" Humidity" FontSize="16"/>
                         </StackPanel>

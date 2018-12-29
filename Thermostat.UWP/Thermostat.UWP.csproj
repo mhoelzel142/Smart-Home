@@ -149,6 +149,18 @@
   <ItemGroup>
     <PRIResource Include=".gitignore" />
     <Content Include="Images\thermometer-icon.png" />
+    <Content Include="Images\weather-clear-night.png" />
+    <Content Include="Images\clear.png" />
+    <Content Include="Images\weather-clouds-night.png" />
+    <Content Include="Images\partly-cloudy.png" />
+    <Content Include="Images\weather-few-clouds-night.png" />
+    <Content Include="Images\scattered-clouds.png" />
+    <Content Include="Images\cloudy.png" />
+    <Content Include="Images\weather-severe-alert.png" />
+    <Content Include="Images\light-rain.png" />
+    <Content Include="Images\rain.png" />
+    <Content Include="Images\snow.png" />
+    <Content Include="Images\thunderstorm.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
