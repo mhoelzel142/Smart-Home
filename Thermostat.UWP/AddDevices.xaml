@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource SystemColorBackgroundBrush}">
 
     <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <Grid.RowDefinitions>
@@ -15,16 +15,36 @@
             <RowDefinition Height="*"/>
 
         </Grid.RowDefinitions>
-        <Button Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="12" FontSize="12" Click="Button_Click">
-            Add network devices
-        </Button>
-        <TextBlock Grid.Row="3" Text="Looking for devices, please wait..." FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="ProgressStatusText"/>
-        <ProgressRing Grid.Row="4" Grid.RowSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" Height="80" Width="80" x:Name="ProgressRing" />
-
-        <ProgressBar Grid.Row="7" Grid.RowSpan="3" Height="20" Width="600" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,50" x:Name="ProgressBar"/>
-        <StackPanel Orientation="Horizontal" Grid.Row="8" HorizontalAlignment="Center">
-            <TextBlock x:Name="NumDevicesFoundLabel" Visibility="Collapsed" Grid.Row="8" HorizontalAlignment="Center" Text="Number of devices found:" Foreground="DarkGray" FontSize="20" Margin="0,36,10,0" VerticalAlignment="Center"/>
-            <TextBlock x:Name="NumberDevicesFound" Foreground="DarkGray" FontSize="24" Margin="0,40,0,0"/>
+        <Button Grid.Row="0"
+                Grid.RowSpan="3"
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Center" 
+                Padding="30"  
+                FontSize="24" 
+                x:Name="BtnAddDevice"
+                Click="Button_Click" 
+                Content="Add a new device"
+                Visibility="Visible"/>
+        <TextBlock Grid.Row="0" 
+                   Text="Looking for devices, please wait..." 
+                   FontSize="30" 
+                   HorizontalAlignment="Center" 
+                   VerticalAlignment="Center" 
+                   Visibility="Collapsed"
+                   x:Name="ProgressStatusText"/>
+        <ProgressRing Grid.Row="1" 
+                      HorizontalAlignment="Center" 
+                      VerticalAlignment="Top" 
+                      Height="90" 
+                      Width="90" 
+                      x:Name="ProgressRing" 
+                      />
+        <StackPanel Grid.Row="2" VerticalAlignment="Center" Visibility="Collapsed" x:Name="NumDevicesFoundLabel" >
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+                <TextBlock HorizontalAlignment="Center" Text="Number of devices found:" Foreground="DarkGray" FontSize="20" Margin="0,0,0,10" VerticalAlignment="Center"/>
+                <TextBlock x:Name="NumberDevicesFound" Foreground="DarkGray" FontSize="24" Margin="10,0,0,10" VerticalAlignment="Center" Text="0"/>
+            </StackPanel>
+            <ProgressBar Height="20" Width="600" HorizontalAlignment="Center"  Margin="0,0,0,50" x:Name="ProgressBar"/>
         </StackPanel>
     </Grid>
 </Page>

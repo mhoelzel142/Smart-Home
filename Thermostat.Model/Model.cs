@@ -37,7 +37,20 @@ namespace Thermostat.Model
             }
         }
 
-        public string DeviceHumidity { get; set; }
+        // NotifyPropertyChanged on UI thread (using Galasoft.MvvmLight DispatcherHelper) to update tiles without refreshing UI
+        private string _deviceHumidity;
+        public string DeviceHumidity
+        {
+            get => _deviceHumidity;
+            set
+            {
+                if (value != _deviceHumidity)
+                {
+                    _deviceHumidity = value;
+                    DispatcherHelper.CheckBeginInvokeOnUI(() => NotifyPropertyChanged());
+                }
+            }
+        }
         public string DeviceTileColor { get; set; }
         public string DeviceTextColor { get; set; }
 

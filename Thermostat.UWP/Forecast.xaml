@@ -1,0 +1,93 @@
+﻿<Page
+    x:Class="Thermostat.UWP.ForecastTest"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:model="using:Thermostat.Model"
+    mc:Ignorable="d"
+    Background="DodgerBlue">
+
+    <Grid Width="800" Height="480" Padding="0" Margin="0">
+        <Grid.Background>
+            <SolidColorBrush Color="DeepSkyBlue" Opacity="0.75"/>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/> <!--Left side container for displaying text-->
+            <ColumnDefinition Width="602"/> <!--Right side container for displaying 5 days of weather forecasts-->
+        </Grid.ColumnDefinitions>
+        <GridView HorizontalAlignment="Left" Grid.Column="0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="250"/>
+                    <RowDefinition Height="80"/>
+                    <RowDefinition Height="80"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Row="0" VerticalAlignment="Top" FontSize="48" Text="Today:" FontWeight="Light" Padding="10"/>
+                <Image Grid.Row="0" VerticalAlignment="Bottom" Source="Images/clear.png" Height="120" Width="120" Margin="0,0,0,20"/>
+                <TextBlock Grid.Row="1" VerticalAlignment="Bottom" FontSize="32" Text="High: 28°" Margin="0" Padding="10"/>
+                <TextBlock Grid.Row="2" VerticalAlignment="Bottom" FontSize="32" Text="Low: 11°" Margin="0" Padding="10"/>
+            </Grid>
+        </GridView>
+
+        <GridView x:Name="DisplayWeather" 
+              Grid.Column="1"
+              ItemsSource="{Binding Source=ViewModel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+              HorizontalAlignment="Center"
+              VerticalAlignment="Bottom">
+            <GridView.ItemTemplate>
+        <DataTemplate x:DataType="model:Forecast">
+                <Grid Width="604" Height="96" Margin="-2">
+                        <Grid.Background>
+                            <SolidColorBrush Color="SkyBlue" Opacity="0.5"/>
+                        </Grid.Background>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Row="0" Opacity="1">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="180"/>
+                                    <ColumnDefinition Width="320"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <StackPanel Orientation="Horizontal">
+                                <Image Source="{Binding weather[0].icon}" 
+                                       Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" 
+                                       HorizontalAlignment="Left" 
+                                       Height="50" Width="50" 
+                                       Margin="5,15,5,5"/>
+                                    <TextBlock Text="{Binding dt_txt.DayOfWeek}" FontSize="20" FontWeight="Light" VerticalAlignment="Center" HorizontalAlignment="Right" Padding="10,5,0,0"/>
+                                </StackPanel>
+                                <StackPanel Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top">
+                                    <TextBlock Text="{Binding weather[0].main}"  FontSize="14" FontWeight="Light" Margin="20,-15,0,0"/>
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" HorizontalAlignment="Right" Orientation="Horizontal" VerticalAlignment="Center">
+                                    <TextBlock Text="{Binding main.temp_max}" Foreground="White" FontSize="48" Margin="10,0,0,0" FontWeight="Light"/>
+                                    <TextBlock Text="°/" FontSize="40"/>
+                                    <TextBlock Text="{Binding main.temp_min}" Foreground="White" FontSize="48" Margin="10,0,0,0" FontWeight="Light"/>
+                                    <TextBlock Text="°" FontSize="40"/>
+                                </StackPanel>
+                                
+                            </Grid>
+                        </StackPanel>
+                    </Grid>
+            </DataTemplate>
+        </GridView.ItemTemplate>
+        </GridView>
+    </Grid>
+</Page>

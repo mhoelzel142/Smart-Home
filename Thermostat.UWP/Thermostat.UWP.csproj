@@ -128,6 +128,9 @@
     <Compile Include="EditSensor.xaml.cs">
       <DependentUpon>EditSensor.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Forecast.xaml.cs">
+      <DependentUpon>Forecast.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\Colors.cs" />
     <Compile Include="Helpers\VariableSizedGridView.cs" />
     <Compile Include="MainPage.xaml.cs">
@@ -135,6 +138,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\DevicesViewModel.cs" />
+    <Compile Include="ViewModels\ForecastViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -143,7 +147,20 @@
     <None Include="Thermostat.UWP_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <PRIResource Include=".gitignore" />
     <Content Include="Images\thermometer-icon.png" />
+    <Content Include="Images\weather-clear-night.png" />
+    <Content Include="Images\clear.png" />
+    <Content Include="Images\weather-clouds-night.png" />
+    <Content Include="Images\partly-cloudy.png" />
+    <Content Include="Images\weather-few-clouds-night.png" />
+    <Content Include="Images\scattered-clouds.png" />
+    <Content Include="Images\cloudy.png" />
+    <Content Include="Images\weather-severe-alert.png" />
+    <Content Include="Images\light-rain.png" />
+    <Content Include="Images\rain.png" />
+    <Content Include="Images\snow.png" />
+    <Content Include="Images\thunderstorm.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -170,6 +187,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Forecast.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -193,6 +214,9 @@
     <Reference Include="Microsoft.EntityFrameworkCore">
       <HintPath>..\..\..\..\.nuget\packages\microsoft.entityframeworkcore\2.2.0\lib\netstandard2.0\Microsoft.EntityFrameworkCore.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <PRIResource Include="Resources.resw" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
