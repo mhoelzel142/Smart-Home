@@ -11,6 +11,7 @@ namespace Thermostat.Model
         public decimal message { get; set; }
         public int cnt { get; set; }
         public ObservableCollection<Forecast> list { get; set; }
+        public City coty { get; set; }
     }
 
     public class Forecast
@@ -71,5 +72,19 @@ namespace Thermostat.Model
     public class Sys
     {
         public string pod { get; set; }
+    }
+
+    public class City
+    {
+        public int id { get; set; }
+        public string name { get; set; }
+        public Coord coord { get; set; }
+        public string country { get; set; }
+    }
+
+    public class Coord
+    {
+        public decimal lat { get; set; }
+        public decimal lon { get; set; }
     }
 }
