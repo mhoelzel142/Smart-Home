@@ -137,6 +137,9 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources.xaml.cs">
+      <DependentUpon>Resources.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\DevicesViewModel.cs" />
     <Compile Include="ViewModels\ForecastViewModel.cs" />
   </ItemGroup>
@@ -195,6 +198,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Resources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
@@ -203,9 +210,12 @@
     <PackageReference Include="MvvmLight">
       <Version>5.4.1.1</Version>
     </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>12.0.1</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Thermostat.Model\SmartHome.Model.csproj">
+    <ProjectReference Include="..\Thermostat.Model\Thermostat.Model.csproj">
       <Project>{7744ec09-b403-44ca-b70a-bab63161de0e}</Project>
       <Name>SmartHome.Model</Name>
     </ProjectReference>

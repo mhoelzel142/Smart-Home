@@ -128,4 +128,3 @@ namespace Thermostat.UWP
         }
     }
 }
-}
