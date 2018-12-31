@@ -205,9 +205,9 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Thermostat.Model\Thermostat.Model.csproj">
+    <ProjectReference Include="..\Thermostat.Model\SmartHome.Model.csproj">
       <Project>{7744ec09-b403-44ca-b70a-bab63161de0e}</Project>
-      <Name>Thermostat.Model</Name>
+      <Name>SmartHome.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

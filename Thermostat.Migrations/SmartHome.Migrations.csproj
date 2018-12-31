@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Thermostat.Model\Thermostat.Model.csproj" />
+    <ProjectReference Include="..\Thermostat.Model\SmartHome.Model.csproj" />
   </ItemGroup>
 
 </Project>
