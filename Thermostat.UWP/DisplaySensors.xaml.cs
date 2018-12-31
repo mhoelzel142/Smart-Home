@@ -19,12 +19,17 @@ using Windows.UI.Xaml.Navigation;
 using Thermostat.Model;
 using Thermostat.UWP.ViewModels;
 
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace Thermostat.UWP
 {
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// This page will retrieve and display temperatures from ESP8266 modules on the local wifi network.
+    /// At the time of writing, only 192.168.1.x subnet is supported, but this can be changed by
+    /// modifying the code below. I have plant to implement bluetooth sketch uploading to Arduino in the future,
+    /// including wireless assigning of device name and IP from phone interface.
+    ///
+    /// All code in this file is ©2018 Mark Hoelzel Jr, all rights reserved.
+    ///
     /// </summary>
     public sealed partial class DisplaySensors : Page
     {
