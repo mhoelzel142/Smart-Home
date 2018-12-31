@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.168
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartHome.Model", "Thermostat.Model\SmartHome.Model.csproj", "{7744EC09-B403-44CA-B70A-BAB63161DE0E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thermostat.Model", "Thermostat.Model\Thermostat.Model.csproj", "{7744EC09-B403-44CA-B70A-BAB63161DE0E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartHome.Migrations", "Thermostat.Migrations\SmartHome.Migrations.csproj", "{57513C33-E675-44CF-9409-81560DBF2DF7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thermostat.Migrations", "Thermostat.Migrations\Thermostat.Migrations.csproj", "{57513C33-E675-44CF-9409-81560DBF2DF7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartHome.UWP", "Thermostat.UWP\SmartHome.UWP.csproj", "{8CE8A0FB-FD19-4151-BA7A-4B36F5EFF214}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartHome.Tests", "SmartHome.Tests\SmartHome.Tests.csproj", "{03F93774-7A79-4FDF-AF85-70DC21B1AF04}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -89,6 +91,32 @@ Global
 		{8CE8A0FB-FD19-4151-BA7A-4B36F5EFF214}.Release|x86.ActiveCfg = Release|x86
 		{8CE8A0FB-FD19-4151-BA7A-4B36F5EFF214}.Release|x86.Build.0 = Release|x86
 		{8CE8A0FB-FD19-4151-BA7A-4B36F5EFF214}.Release|x86.Deploy.0 = Release|x86
+		{03F93774-7A79-4FDF-AF85-70DC21B1AF04}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{03F93774-7A79-4FDF-AF85-70DC21B1AF04}.Debug|ARM.ActiveCfg = Debug|ARM
+		{03F93774-7A79-4FDF-AF85-70DC21B1AF04}.Debug|ARM.Build.0 = Debug|ARM
+		{03F93774-7A79-4FDF-AF85-70DC21B1AF04}.Debug|ARM.Deploy.0 = Debug|ARM
+		{03F93774-7A79-4FDF-AF85-70DC21B1AF04}.Debug|ARM64.ActiveCfg = Debug|ARM64
+		{03F93774-7A79-4FDF-AF85-70DC21B1AF04}.Debug|ARM64.Build.0 = Debug|ARM64
+		{03F93774-7A79-4FDF-AF85-70DC21B1AF04}.Debug|ARM64.Deploy.0 = Debug|ARM64
+		{03F93774-7A79-4FDF-AF85-70DC21B1AF04}.Debug|x64.ActiveCfg = Debug|x64
+		{03F93774-7A79-4FDF-AF85-70DC21B1AF04}.Debug|x64.Build.0 = Debug|x64
+		{03F93774-7A79-4FDF-AF85-70DC21B1AF04}.Debug|x64.Deploy.0 = Debug|x64
+		{03F93774-7A79-4FDF-AF85-70DC21B1AF04}.Debug|x86.ActiveCfg = Debug|x86
+		{03F93774-7A79-4FDF-AF85-70DC21B1AF04}.Debug|x86.Build.0 = Debug|x86
+		{03F93774-7A79-4FDF-AF85-70DC21B1AF04}.Debug|x86.Deploy.0 = Debug|x86
+		{03F93774-7A79-4FDF-AF85-70DC21B1AF04}.Release|Any CPU.ActiveCfg = Release|x86
+		{03F93774-7A79-4FDF-AF85-70DC21B1AF04}.Release|ARM.ActiveCfg = Release|ARM
+		{03F93774-7A79-4FDF-AF85-70DC21B1AF04}.Release|ARM.Build.0 = Release|ARM
+		{03F93774-7A79-4FDF-AF85-70DC21B1AF04}.Release|ARM.Deploy.0 = Release|ARM
+		{03F93774-7A79-4FDF-AF85-70DC21B1AF04}.Release|ARM64.ActiveCfg = Release|ARM64
+		{03F93774-7A79-4FDF-AF85-70DC21B1AF04}.Release|ARM64.Build.0 = Release|ARM64
+		{03F93774-7A79-4FDF-AF85-70DC21B1AF04}.Release|ARM64.Deploy.0 = Release|ARM64
+		{03F93774-7A79-4FDF-AF85-70DC21B1AF04}.Release|x64.ActiveCfg = Release|x64
+		{03F93774-7A79-4FDF-AF85-70DC21B1AF04}.Release|x64.Build.0 = Release|x64
+		{03F93774-7A79-4FDF-AF85-70DC21B1AF04}.Release|x64.Deploy.0 = Release|x64
+		{03F93774-7A79-4FDF-AF85-70DC21B1AF04}.Release|x86.ActiveCfg = Release|x86
+		{03F93774-7A79-4FDF-AF85-70DC21B1AF04}.Release|x86.Build.0 = Release|x86
+		{03F93774-7A79-4FDF-AF85-70DC21B1AF04}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

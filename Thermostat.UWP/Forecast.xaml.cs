@@ -38,7 +38,7 @@ namespace Thermostat.UWP
         public async void GetForecast()
         {
             // Instantiate the viewModel list
-            ForecastViewModel viewModel = new ForecastViewModel {Forecasts = new ObservableCollection<Forecast>()};
+            ForecastViewModel viewModel = new ForecastViewModel { Forecasts = new ObservableCollection<Forecast>() };
 
             HttpClient client = new HttpClient()
             {
@@ -61,6 +61,10 @@ namespace Thermostat.UWP
                 item.main.temp_min = convertToFahrenheit(item.main.temp_min);
                 item.main.temp_max = convertToFahrenheit(item.main.temp_max);
 
+                // convert OpenWeatherMap icon from a sprite into a png image from the Images folder
+                item.weather[0].icon = GetUsableWeatherIcon(item.weather[0].icon);
+
+
                 // Get day of week for forecast
                 if (item.dt_txt >= DateTime.Now)
                 {
@@ -75,41 +79,45 @@ namespace Thermostat.UWP
                 {
                     viewModel.Forecasts.Add(item);
                 }
-                var icon = item.weather[0].icon;
-                switch (icon)
-                {
-                    case "01d":
-                        item.weather[0].icon = "Images/clear.png";
-                        break;
-                    case "02d":
-                        item.weather[0].icon = "Images/partly-cloudy.png";
-                        break;
-                    case "03d":
-                        item.weather[0].icon = "Images/scattered-clouds.png";
-                        break;
-                    case "04d":
-                        item.weather[0].icon = "Images/cloudy.png";
-                        break;
-                    case "09d":
-                        item.weather[0].icon = "Images/light-rain.png";
-                        break;
-                    case "10d":
-                        item.weather[0].icon = "Images/rain.png";
-                        break;
-                    case "11d":
-                        item.weather[0].icon = "Images/thunderstorm.png";
-                        break;
-                    case "13d":
-                        item.weather[0].icon = "Images/snow.png";
-                        break;
-                    default:
-                        break;
 
-
-                }
             }
             //viewModel.Forecasts = weatherData.list;
             DisplayWeather.ItemsSource = viewModel.Forecasts;
+        }
+
+        private string GetUsableWeatherIcon(string icon)
+        {
+            string newIcon;
+            switch (icon)
+            {
+                case "01d":
+                    newIcon = "Images/clear.png";
+                    return newIcon;
+                case "02d":
+                    newIcon = "Images/partly-cloudy.png";
+                    return newIcon;
+                case "03d":
+                    newIcon = "Images/scattered-clouds.png";
+                    return newIcon;
+                case "04d":
+                    newIcon = "Images/cloudy.png";
+                    return newIcon;
+                case "09d":
+                    newIcon = "Images/light-rain.png";
+                    return newIcon;
+                case "10d":
+                    newIcon = "Images/rain.png";
+                    return newIcon;
+                case "11d":
+                    newIcon = "Images/thunderstorm.png";
+                    return newIcon;
+                case "13d":
+                    newIcon = "Images/snow.png";
+                    return newIcon;
+                default:
+                    newIcon = icon;
+                    return newIcon;
+            }
         }
 
         private decimal convertToFahrenheit(decimal kelvinTemp)
@@ -119,4 +127,5 @@ namespace Thermostat.UWP
             return Math.Floor(fahrenheitTemp);
         }
     }
+}
 }
