@@ -1,0 +1,85 @@
+Welcome to the official Smart-Home repository by Mark Hoelzel. Let's get some of the official stuff out of the way first: 
+
+Copyright 2018, Mark Hoelzel
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software 
+and associated documentation files (the "Software"), to deal in the Software without restriction, 
+including without limitation the rights to use, copy, modify, merge, publish, distribute, 
+sublicense, and/or sell copies of the Software, and to permit persons to whom the Software
+is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial 
+portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR 
+PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY 
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING 
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+IMPORTANT COPYRIGHT SUPPLEMENT - PLEASE READ: 
+So basically, you can use this software however you want - But don't expect to make money from it, 
+and don't expect customized support if/when something goes wrong. You're free to use the software, 
+but don't modify it for private/public/for-profit use and then ask me for help. By downloading or 
+modifying the source code, you agree to these terms. 
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+Now that the legal stuff is out of the way, let's get started: 
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+ __          __  _                          
+ \ \        / / | |                         
+  \ \  /\  / /__| | ___ ___  _ __ ___   ___ 
+   \ \/  \/ / _ \ |/ __/ _ \| '_ ` _ \ / _ \
+    \  /\  /  __/ | (_| (_) | | | | | |  __/
+     \/  \/ \___|_|\___\___/|_| |_| |_|\___|
+                                            
+                                            
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Welcome! Willkommen! Bienvenido!
+
+This is Smart-Home, designed and developed by Mark Hoelzel Jr. 
+
+This app is designed to run on Raspberry Pi 3 B+, although more supported devices are planned for the future. 
+
+To begin, right click on the SmartHome.UWP project on the Solution Explorer, and add a new Resources (.resw) 
+item. Name this item Resources.resw, and add a key called ApiKey. This is required for the app to function 
+properly. To get 5-day forecasts, you must register for an api key at https://www.openweathermap.org. 
+The 5 day/3 hour forecast was used for the creation of the app, however you can customize it however you 
+want - see the SmartHome.UWP.Forecast.xaml file for more information. 
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+   _____            _             _       
+  / ____|          | |           | |      
+ | |     ___  _ __ | |_ ___ _ __ | |_ ___ 
+ | |    / _ \| '_ \| __/ _ \ '_ \| __/ __|
+ | |___| (_) | | | | ||  __/ | | | |_\__ \
+  \_____\___/|_| |_|\__\___|_| |_|\__|___/
+                                          
+///////////////////////////////////////////////////////////////////////////////////////////////////                                          
+
+This is the index of the project. 
+---------------------------------
+
+Thermostat.Model - This is the model project. This is where models reside.
+
+Thermostat.Migrations - This is for running migrations using Entity Framework Code-First. If you need 
+to change the Model, run Add-Migration {YourMigrationNameHere} after making changes. 
+
+SmartHome.UWP - This is the main project GUI. All project views and most of the logic lives here.
+
+SmartHome.Tests - This is a VS Test Project - no NUnit or XUnit here - just the VS basic test project. 
+Feel free to delete this and create your own test projects - it has no dependencies in the solution.
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+This file will be updated with more information as more is added to the project. Check back often :) 

@@ -217,7 +217,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Thermostat.Model\Thermostat.Model.csproj">
       <Project>{7744ec09-b403-44ca-b70a-bab63161de0e}</Project>
-      <Name>SmartHome.Model</Name>
+      <Name>Thermostat.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
