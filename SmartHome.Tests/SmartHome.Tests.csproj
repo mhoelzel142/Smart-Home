@@ -159,7 +159,7 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Thermostat.UWP\Thermostat.UWP.csproj">
+    <ProjectReference Include="..\Thermostat.UWP\SmartHome.UWP.csproj">
       <Project>{8ce8a0fb-fd19-4151-ba7a-4b36f5eff214}</Project>
       <Name>Thermostat.UWP</Name>
     </ProjectReference>
