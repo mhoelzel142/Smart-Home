@@ -3,22 +3,9 @@ A smart home dashboard for Windows 10 IoT on Raspberry Pi
 #
 This simple smart home dashboard is designed for Raspberry Pi devices running Windows 10 IoT Core. 
 
-Currently, the dashboard only supports temperature and humidity sensors, but more functionality will be added as I get time (and build new sensors). 
+Currently, the dashboard supports temperature/humidity sensors and 5-day forecasts from OpenWeatherMap. More functionality will be added as I build more sensors - I'm currently exploring wireless relay board (for smart lights) and Speech-To-Text (via CMUSphinx) for voice control functionality. Eventually, I aim to give the smart home a name - Jarvis, perhaps? - and tell it to turn off the lights, and it happens. This functionality will require lots of research, but it's my long-term goal.  
 
-
-## IMPORTANT:
-If you want to use the weather forecast feature, you must obtain an API Key from https://openweathermap.org. Create a resources (resw) file in the root directory of the UWP project and name it Resources.resw. Create an entry called ApiKey and paste your api key as the value. This file is .gitignore'd from the repo to protect the API key. If you fork this project, I'd recommend keeping it this way. 
-
-
-The UI is created using Universal Windows Platform (UWP) and .Net Core. There are 3 projects:
-
-Thermostat.Migrations - this project is used for running migration commands using Entity Framework Code-First
-
-Thermostat.Model - This is where the models reside. Models are accessed from the UWP project, and the database is updated from the Migrations project. 
-
-Thermostat.UWP - This is the GUI. It is designed to run on the official Raspberry Pi 7" touch screen, so UI elements are scaled for display on an 800x480 screen. 
-
-Contributions are welcome - I'm still learning UWP and C#, so this project is an ongoing learning experience for me. 
+Contributions to the project are welcome - I'm a novice with UWP, so this project is basically an interactive learning experience for me. 
 
 ## Getting Started
 
@@ -36,3 +23,5 @@ Thermostat.Migrations - This is a .Net Core console application designed for run
 
 Once you've downloaded the project, you'll have to create a Resources file (.resw) to store things like API keys. By default, this file is listed in the .gitignore file, so it isn't checked in with commits - this is to keep your API keys secure. You can reference the API keys from your code using ResourceLoader.GetForCurrentView().GetString("Key Name Here"). 
 
+## IMPORTANT:
+If you want to use the weather forecast feature, you must obtain an API key from https://openweathermap.org. Create a resources (.resw) file in the root directory of the UWP project and name it Resources.resw. Create a Key named ApiKey and paste your api key as the value. This file is .gitignore'd from the repo to protect the API key. If you fork this project, I'd recommend keeping it this way. 
