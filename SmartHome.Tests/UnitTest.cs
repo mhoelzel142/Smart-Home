@@ -11,14 +11,14 @@ namespace SmartHome.Tests
         [TestMethod]
         public void AssertAllColorsAreNotNull()
         {
-            var x = Thermostat.UWP.Helpers.Colors.GetAvailableColors();
+            var x = UWP.Helpers.Colors.GetAvailableColors();
             Assert.IsNotNull(x);
         }
 
         [TestMethod]
         public void AssertRandomColorsAreNotNull()
         {
-            var x = Thermostat.UWP.Helpers.Colors.GetAvailableColors();
+            var x = UWP.Helpers.Colors.GetAvailableColors();
             List<string> colorList = new List<string>();
 
 
