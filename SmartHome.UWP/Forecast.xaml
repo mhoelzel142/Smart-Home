@@ -41,18 +41,22 @@
                     <Image Grid.Row="0" VerticalAlignment="Bottom" Source="Images/clear.png" Height="120" Width="120" Margin="0,0,0,20"/>
                 <StackPanel Grid.Row="1" HorizontalAlignment="Center" Width="240">
                     <TextBlock Text="High:" HorizontalAlignment="Left" Padding="30,0,0,0"/>
-                    <StackPanel Orientation="Horizontal" Width="240" HorizontalAlignment="Center">
-                        <TextBlock HorizontalAlignment="Center" FontSize="48" x:Name="todayHighTemp" Margin="0" Padding="0"/>
-                        <TextBlock HorizontalAlignment="Center" Text="°" FontSize="40"/>
-                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <TextBlock VerticalAlignment="Center" 
+                               HorizontalAlignment="Center"
+                               FontSize="48" x:Name="todayHighTemp" Margin="0" Padding="0"/>
+                    <TextBlock Text="°" FontSize="40" VerticalAlignment="Top"/>
+                </StackPanel>
                 </StackPanel>
                 
                 <StackPanel Grid.Row="2" HorizontalAlignment="Center" Width="240">
                     <TextBlock Text="Low:" HorizontalAlignment="Left" Padding="30,0,0,0"/>
-                    <TextBlock VerticalAlignment="Center" 
-                               HorizontalAlignment="Center"
-                               FontSize="48" x:Name="todayLowTemp" Margin="0" Padding="10"/>
-                    <TextBlock Text="°" FontSize="40"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"> 
+                        <TextBlock VerticalAlignment="Center" 
+                                   HorizontalAlignment="Center"
+                                   FontSize="48" x:Name="todayLowTemp" Margin="0" Padding="0"/>
+                        <TextBlock Text="°" FontSize="40" VerticalAlignment="Top"/>
+                    </StackPanel>
                 </StackPanel>
             </Grid>
         </GridView>
