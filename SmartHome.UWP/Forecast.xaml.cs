@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 using Newtonsoft.Json;
 using SmartHome.Model;
@@ -60,6 +61,11 @@ namespace SmartHome.UWP
 
             // Get the high and low for current day. TODO: This needs to be improved, make a 2nd api request maybe?
             var firstItem = groupedWeatherByDay.First();
+
+            var weatherIcon = new Uri(BaseUri, GetUsableWeatherIcon(firstItem.First().weatherList.weather[0].icon));
+            BitmapImage iconSource = new BitmapImage(weatherIcon);
+            todayWeatherIcon.Source = iconSource;
+
             todayLowTemp.Text = Math.Round(firstItem.First().weatherList.main.temp_min).ToString();
             todayHighTemp.Text = Math.Round(firstItem.First().weatherList.main.temp_max).ToString();
 

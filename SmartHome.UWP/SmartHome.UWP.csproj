@@ -213,6 +213,9 @@
     <PackageReference Include="Newtonsoft.Json">
       <Version>12.0.1</Version>
     </PackageReference>
+    <PackageReference Include="SpotifyAPI-NET">
+      <Version>2.18.1</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SmartHome.Model\SmartHome.Model.csproj">

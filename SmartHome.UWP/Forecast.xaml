@@ -25,22 +25,24 @@
                   ScrollViewer.VerticalScrollBarVisibility="Hidden">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="270"/>
+                    <RowDefinition Height="260"/>
                     <RowDefinition Height="105"/>
                     <RowDefinition Height="105"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="240"/>
                 </Grid.ColumnDefinitions>
-                
-                    <TextBlock Grid.Row="0" 
+
+                <StackPanel Orientation="Vertical" Grid.Row="0">
+                    <TextBlock 
                                VerticalAlignment="Top" 
                                HorizontalAlignment="Center"
-                               FontSize="48" Text="Today:" 
+                               FontSize="48" Text="Now:" 
                                FontWeight="Light" Padding="10"/>
-                    <Image Grid.Row="0" VerticalAlignment="Bottom" Source="Images/clear.png" Height="120" Width="120" Margin="0,0,0,20"/>
+                </StackPanel>
+                <Image Grid.Row="0" VerticalAlignment="Center" x:Name="todayWeatherIcon" Height="140" Width="140" Margin="0,40,0,20"/>
                 <StackPanel Grid.Row="1" HorizontalAlignment="Center" Width="240">
-                    <TextBlock Text="High:" HorizontalAlignment="Left" Padding="30,0,0,0"/>
+                    <TextBlock Text="High:" HorizontalAlignment="Left" Padding="30,10,0,0"/>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                         <TextBlock VerticalAlignment="Center" 
                                HorizontalAlignment="Center"
@@ -50,7 +52,7 @@
                 </StackPanel>
                 
                 <StackPanel Grid.Row="2" HorizontalAlignment="Center" Width="240">
-                    <TextBlock Text="Low:" HorizontalAlignment="Left" Padding="30,0,0,0"/>
+                    <TextBlock Text="Low:" HorizontalAlignment="Left" Padding="30,10,0,0"/>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"> 
                         <TextBlock VerticalAlignment="Center" 
                                    HorizontalAlignment="Center"
@@ -84,11 +86,11 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                        <StackPanel Grid.Row="0" Opacity="1">
+                        <StackPanel Grid.Row="0" Opacity="1" Padding="10,0,0,0">
                             <Grid>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="180"/>
-                                    <ColumnDefinition Width="220"/>
+                                    <ColumnDefinition Width="160"/>
+                                    <ColumnDefinition Width="200"/>
                                     <ColumnDefinition Width="100"/>
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
@@ -96,17 +98,17 @@
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{Binding dt_txt.DayOfWeek}" FontSize="24" FontWeight="Light" VerticalAlignment="Center" HorizontalAlignment="Right" Padding="10,5,0,0"/>
+                                    <TextBlock Text="{Binding dt_txt.DayOfWeek}" FontSize="26" FontWeight="Light" VerticalAlignment="Center" HorizontalAlignment="Right" Padding="10,5,0,0"/>
                                 </StackPanel>
                                 <StackPanel Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center">
                                     <TextBlock Text="{Binding weather[0].main}"  FontSize="18" FontWeight="Light" Margin="10"/>
                                 </StackPanel>
 
                                 <StackPanel Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Center">
-                                    <TextBlock Text="{Binding main.temp_max}" Foreground="White" FontSize="48" Margin="10,0,0,0" FontWeight="Light"/>
-                                    <TextBlock Text="°/" FontSize="40"/>
-                                    <TextBlock Text="{Binding main.temp_min}" Foreground="White" FontSize="48" Margin="10,0,0,0" FontWeight="Light"/>
-                                    <TextBlock Text="°" FontSize="40"/>
+                                    <TextBlock Text="{Binding main.temp_max}" Foreground="White" FontSize="40" Margin="10,0,0,0" FontWeight="Light"/>
+                                    <TextBlock Text="°/" FontSize="38"/>
+                                    <TextBlock Text="{Binding main.temp_min}" Foreground="White" FontSize="40" Margin="10,0,0,0" FontWeight="Light"/>
+                                    <TextBlock Text="°" FontSize="38"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="2" Grid.Row="0" Grid.RowSpan="2">
                                 <Image Source="{Binding weather[0].icon}" 
